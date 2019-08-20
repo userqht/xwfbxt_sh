@@ -35,9 +35,10 @@
     <table class="table  table-bordered" id = "dataTable">
         <thead>
         <tr >
-            <th >申请序号</th>
-            <th>作者姓名</th>
+            <th>序号</th>
             <th>类型</th>
+            <th>主标题</th>
+            <th>申请时间</th>
             <th width="100">操作</th>
         </tr>
         </thead>
@@ -62,7 +63,6 @@
 <script>
     //定义方法获取后台数据
     function initPage(){
-
         var pageNum=window.location.search.split("=")[1];
         console.log(pageNum);
         var requestURL="getAllArticleInfo";
@@ -85,15 +85,19 @@
             //数据，json字符串
             //请求成功
             success : function(result) {
+                console.log(result);
+                var count=0;
                 $("#dataTable tbody").html("");
                 //js对象和jquery是不一样的，基本不能互相操作，得靠$()转换
                 //2.将数据填充到table中
                 $(result.list).each(function(index,item){
                     var trStr = "<tr>";
+                    count++;
                     //获取id并拼接
-                    trStr+="<td>"+item.articleId+"</td>";
-                    trStr+="<td>"+item.articleName+"</td>";
-                    trStr+="<td>"+item.typeId+"</td>";
+                    trStr+="<td>"+count+"</td>";
+                    trStr+="<td>"+item.typeName+"</td>";
+                    trStr+="<td>"+item.mainTitle+"</td>";
+                    trStr+="<td>"+new Date(parseInt(item.updateTime)).toLocaleString().replace(/:\d{1,2}$/,' ')+"</td>";
                     trStr+="<td>";
                     trStr+="<button type=\"button\"  onclick='checkArticle("+item.articleId+")'>查看详情</button>&nbsp;"
                     trStr+="</td>";

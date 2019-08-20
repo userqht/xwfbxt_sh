@@ -1,5 +1,6 @@
 package com.qf.xwfb.pojo;
 
+
 import lombok.Data;
 import java.sql.Timestamp;
 
@@ -9,7 +10,7 @@ public class ArticleInfo {
     Integer articleId;
     Integer userId;
     Integer typeId;
-    String articleName;
+    String cover;
     String mainTitle;
     String subTitle;
     String content;

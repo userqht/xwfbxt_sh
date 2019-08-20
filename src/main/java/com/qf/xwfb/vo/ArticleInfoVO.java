@@ -9,7 +9,7 @@ public class ArticleInfoVO {
     Integer articleId;
     Integer userId;
     Integer typeId;
-    String articleName;
+    String cover;
     String mainTitle;
     String subTitle;
     String content;

@@ -30,12 +30,21 @@
     </div>
 </nav>
 
-<hr>
+   <hr>
+        <div class="form-group" style="text-align:center;" id="cover">
+            <label >封面图:</label>
+            <br>
+        </div>
+        <hr>
+
+
         <div class="form-group" style="text-align:center;" id="mainTitle">
             <label >主标题:</label>
             <br>
         </div>
         <hr>
+
+
         <div class="form-group" style="text-align:center;" id="subTitle">
             <label >副标题:</label><br>
         </div>
@@ -76,6 +85,10 @@
         success : function(result) {
 
             console.log(result);
+            //展示封面图
+            var i=new Image();
+            i.src=result.cover;
+            $("#cover").append(i);
 
             strCon1=result.mainTitle;
             //整体拼接到div里面去

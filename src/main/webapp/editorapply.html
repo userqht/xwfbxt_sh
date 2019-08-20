@@ -101,7 +101,7 @@
                 });
             }
 
-        }
+        };
 
 
         Dropzone.options.dropzoneDiv2 = {
@@ -147,42 +147,73 @@
                 });
             }
 
-        }
+        };
 
         function register() {
+          $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "admin/getEditorApplyById?userId="+userId,
+            //数据，json字符串
+            //请求成功
+            success : function(result) {
+              if(result!=null){
+                alert("已申请,请勿重复提交!");
 
-            $.ajax({
-                //请求方式
-                type : "POST",
-                //请求的媒体类型
-                contentType: "application/json;charset=UTF-8",
-                //接受数据类型
-                dataType:"json",
-                //请求地址
-                url : "applyEditor",
-                //数据，json字符串
-                data : JSON.stringify(
-                    {
-                      "userId":userId,
-                      "realName":$("#realName").val(),
-                        "idCardBack":img1,
-                        "idCardFront":img2
-                    }
-                ),
-                //请求成功
-                success : function(result) {
+                //window.location.href="个人主页";
+              }else{
+
+                $.ajax({
+                  //请求方式
+                  type : "POST",
+                  //请求的媒体类型
+                  contentType: "application/json;charset=UTF-8",
+                  //接受数据类型
+                  dataType:"json",
+                  //请求地址
+                  url : "applyEditor",
+                  //数据，json字符串
+                  data : JSON.stringify(
+                          {
+                            "userId":userId,
+                            "realName":$("#realName").val(),
+                            "idCardBack":img1,
+                            "idCardFront":img2
+                          }
+                  ),
+                  //请求成功
+                  success : function(result) {
                     console.log(result);
 
-                },
-                //请求失败，包含具体的错误信息
-                error : function(e){
+                  },
+                  //请求失败，包含具体的错误信息
+                  error : function(e){
 
                     console.log(e.status);
                     console.log(e.responseText);
-                }
-            });
-            //window.location.href="个人主页";
+                  }
+                });
+
+                  //window.location.href="个人主页";
+              }
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+
+              console.log(e.status);
+              console.log(e.responseText);
+            }
+          });
         }
+
+
+
     </script>
   </body>
 </html>

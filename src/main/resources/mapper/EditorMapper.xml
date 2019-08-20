@@ -14,7 +14,7 @@
     </select>
 
     <!--通过id来找到申请成为编辑的用户的详细信息-->
-    <select id="getEditorApplyById" resultType="com.qf.xwfb.pojo.UserInfo">
+    <select id="getEditorApplyById" parameterType="int" resultType="com.qf.xwfb.pojo.UserInfo">
         select * from userinfo where status = 1 and userId=#{userId}
     </select>
 
